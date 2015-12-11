@@ -5,18 +5,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.uwsoft.editor.renderer.SceneLoader;
 
 public class PlatformerTutorial extends ApplicationAdapter {
-	private SceneLoader sl;
-	private Viewport viewport;
+
+
+    private GameStage gameStage;
+	private UIStage uiStage;
 
 	
 	@Override
 	public void create () {
-		viewport = new FitViewport(267, 160);
-		sl = new SceneLoader();
-		sl.loadScene("MainScene", viewport);
+		FitViewport viewport = new FitViewport(267, 160);
+        gameStage = new GameStage(viewport);
+
+		FitViewport uiViewport = new FitViewport(267, 160);
+		uiStage = new UIStage(uiViewport);
 
 	}
 
@@ -24,6 +27,9 @@ public class PlatformerTutorial extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		sl.getEngine().update(Gdx.graphics.getDeltaTime());
+		gameStage.act(Gdx.graphics.getDeltaTime());
+        gameStage.draw();
+		uiStage.act(Gdx.graphics.getDeltaTime());
+		uiStage.draw();
 	}
 }

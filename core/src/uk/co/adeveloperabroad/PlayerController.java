@@ -7,7 +7,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
-import com.uwsoft.editor.renderer.components.sprite.AnimationComponent;
 import com.uwsoft.editor.renderer.components.sprite.SpriteAnimationStateComponent;
 import com.uwsoft.editor.renderer.scripts.IScript;
 
@@ -25,10 +24,6 @@ public class PlayerController implements IScript {
     @Override
     public void init(Entity entity) {
         player = entity;
-        for (Component component:  player.getComponents()) {
-            System.out.println(component.toString());
-        }
-
         transformComponent = entity.getComponent(TransformComponent.class);
         dimensionsComponent = entity.getComponent(DimensionsComponent.class);
         spriteAnimationStateComponent = entity.getComponent(SpriteAnimationStateComponent.class);

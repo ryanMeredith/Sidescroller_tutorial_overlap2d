@@ -2,9 +2,11 @@ package uk.co.adeveloperabroad;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.uwsoft.editor.renderer.resources.IResourceRetriever;
 
 public class PlatformerTutorial extends ApplicationAdapter {
 
@@ -21,11 +23,16 @@ public class PlatformerTutorial extends ApplicationAdapter {
 		FitViewport uiViewport = new FitViewport(267, 160);
 		uiStage = new UIStage(uiViewport);
 
+		InputMultiplexer inputMultiplexer = new InputMultiplexer();
+		inputMultiplexer.addProcessor(gameStage);
+		inputMultiplexer.addProcessor(uiStage);
+		Gdx.input.setInputProcessor(inputMultiplexer);
+
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gameStage.act(Gdx.graphics.getDeltaTime());
         gameStage.draw();
